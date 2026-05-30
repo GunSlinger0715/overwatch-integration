@@ -1,0 +1,43 @@
+# =========================================================
+# OVERWATCH Integration Workflow
+#
+# Purpose:
+# Validate end-to-end intelligence flow
+# across the OVERWATCH ecosystem.
+#
+# Philosophy:
+# Validate.
+# Connect.
+# Demonstrate.
+# =========================================================
+
+name: OVERWATCH Integration Tests
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run Integration Flow Test
+        run: |
+          python -m tests.test_overwatch_flow
